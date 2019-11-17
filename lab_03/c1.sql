@@ -1,21 +1,39 @@
 --Триггер AFTER
 
-DROP TABLE IF EXISTS history_of_changes;
+DROP TABLE IF EXISTS emp_audit;
 
-CREATE TABLE history_of_changes (
-	user_name VARCHAR(100),
-	action	VARCHAR(6)
-);	
+CREATE TABLE emp_audit(
+	operation         char(1)   NOT NULL,
+	stamp             timestamp NOT NULL,
+	userid            text      NOT NULL,
+	album_id 	  INT,
+	album_name	  text,
+	album_type	  text,
+	record_year	  INT,
+	tracks_count	  INT,
+	musicians_id	  INT,
+	label_id	  INT,
+	genre_id	  INT
+);
 
-CREATE OR REPLACE FUNCTION add_entry()
-RETURNS TRIGGER AS $emp_stamp$
-BEGIN
-	INSERT INTO history_of_changes VALUES (user, TG_OP);
-	RETURN NULL;
-END;
-$emp_stamp$ LANGUAGE plpgsql;
+CREATE OR REPLACE FUNCTION process_emp_audit() RETURNS TRIGGER AS $emp_audit$
+    BEGIN
+        IF (TG_OP = 'DELETE') THEN
+            INSERT INTO emp_audit SELECT 'D', now(), user, OLD.*;
+            RETURN OLD;
+        ELSIF (TG_OP = 'UPDATE') THEN
+            INSERT INTO emp_audit SELECT 'U', now(), user, NEW.*;
+            RETURN NEW;
+        ELSIF (TG_OP = 'INSERT') THEN
+            INSERT INTO emp_audit SELECT 'I', now(), user, NEW.*;
+            RETURN NEW;
+        END IF;
+        RETURN NULL;
+    END;
+$emp_audit$ LANGUAGE plpgsql;
 
-CREATE TRIGGER print_info
-	AFTER INSERT OR DELETE OR UPDATE ON lab_01.albums
-	FOR EACH ROW
-	EXECUTE FUNCTION print_message();
+DROP TRIGGER IF EXISTS emp_audit ON lab_01.albums;
+
+CREATE TRIGGER emp_audit
+AFTER INSERT OR UPDATE OR DELETE ON lab_01.albums
+    FOR EACH ROW EXECUTE PROCEDURE process_emp_audit();
