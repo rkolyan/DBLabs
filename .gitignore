@@ -1,0 +1,8 @@
+*/__pycache__/*
+*.gnumeric
+*.exe
+*.out
+*.pyc
+*.txt
+*.o
+*TODO
