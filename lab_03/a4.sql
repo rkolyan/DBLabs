@@ -1,4 +1,4 @@
---Recursive function or function with recursive CTE
+--Рекурсивная функция или функция с рекурсивным обобщенным табличным выражением
 CREATE OR REPLACE FUNCTION show_albums()
 RETURNS TABLE (album_index INT, album_name VARCHAR(200))
 AS $$

@@ -21,5 +21,5 @@ AS $$
 		(SELECT musicians_id FROM lab_01.musicians M WHERE M.name=$5),
 		(SELECT label_id FROM lab_01.labels L WHERE L.name=$6),
 		(SELECT genre_id FROM lab_01.genres G WHERE G.name=$7)
-	)
+	);
 $$ LANGUAGE SQL;
