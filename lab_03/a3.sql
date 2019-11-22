@@ -1,6 +1,6 @@
 --Многооператорная табличная функция
 CREATE OR REPLACE FUNCTION get_music_group_album_in(INT)
-RETURNS RECORD
+RETURNS TABLE
 AS $$
 BEGIN
 	SELECT M.name AS group_name, A.name AS album_name, A.record_year AS record_year
