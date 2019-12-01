@@ -5,4 +5,5 @@
 *.pyc
 *.txt
 *.o
+*.so
 *TODO
