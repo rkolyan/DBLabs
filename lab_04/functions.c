@@ -2,8 +2,8 @@
 
 #include <postgres.h>
 #include <string.h>
-#include <fmgr.h>
 #include <funcapi.h>
+#include <fmgr.h>
 
 #ifdef PG_MODULE_MAGIC
 PG_MODULE_MAGIC;
