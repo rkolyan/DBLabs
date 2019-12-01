@@ -18,7 +18,7 @@ CREATE TABLE lab_01.Musicians
 ALTER TABLE lab_01.Musicians ADD CONSTRAINT UI_M UNIQUE(musicians_id);
 ALTER TABLE lab_01.Musicians ADD CONSTRAINT CH_M_NAME CHECK(name <> '');
 
-\copy lab_01.Musicians FROM '/home/nikolay/DesktopW/BDLabs/lab_01/csv/musicians.csv' WITH (FORMAT csv);
+\copy lab_01.Musicians FROM '/home/nikolay/DesktopW/DBLabs/lab_01/csv/musicians.csv' WITH (FORMAT csv);
 
 CREATE TABLE lab_01.Genres
 (
@@ -30,7 +30,7 @@ CREATE TABLE lab_01.Genres
 ALTER TABLE lab_01.Genres ADD CONSTRAINT UI_G UNIQUE(genre_id);
 ALTER TABLE lab_01.Genres ADD CONSTRAINT CH_G_NAME CHECK(name <> '');
 
-\copy lab_01.Genres FROM '/home/nikolay/DesktopW/BDLabs/lab_01/csv/genres.csv' WITH (FORMAT csv);
+\copy lab_01.Genres FROM '/home/nikolay/DesktopW/DBLabs/lab_01/csv/genres.csv' WITH (FORMAT csv);
 
 CREATE TABLE lab_01.Labels
 (
@@ -42,7 +42,7 @@ CREATE TABLE lab_01.Labels
 ALTER TABLE lab_01.Labels ADD CONSTRAINT UI_L UNIQUE(label_id);
 ALTER TABLE lab_01.Labels ADD CONSTRAINT CH_L_NAME CHECK(name <> '');
 
-\copy lab_01.Labels FROM '/home/nikolay/DesktopW/BDLabs/lab_01/csv/labels.csv' WITH (FORMAT csv);
+\copy lab_01.Labels FROM '/home/nikolay/DesktopW/DBLabs/lab_01/csv/labels.csv' WITH (FORMAT csv);
 
 CREATE TABLE lab_01.Albums
 (
@@ -61,4 +61,4 @@ ALTER TABLE lab_01.Albums ADD CONSTRAINT CH_A_NAME CHECK(name <> '');
 ALTER TABLE lab_01.Albums ADD CONSTRAINT CH_MINUS_TRACKS CHECK(tracks_count > 0);
 ALTER TABLE lab_01.Albums ADD CONSTRAINT CH_YEAR CHECK(record_year < 2021 and record_year > -1);
 
-\copy lab_01.Albums FROM '/home/nikolay/DesktopW/BDLabs/lab_01/csv/albums.csv' WITH (FORMAT csv);
+\copy lab_01.Albums FROM '/home/nikolay/DesktopW/DBLabs/lab_01/csv/albums.csv' WITH (FORMAT csv);
