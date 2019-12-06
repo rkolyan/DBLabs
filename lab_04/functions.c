@@ -9,6 +9,7 @@
 PG_MODULE_MAGIC;
 #endif
 
+//1
 PG_FUNCTION_INFO_V1(find_string_length);
 
 Datum find_string_length(PG_FUNCTION_ARGS)
@@ -17,6 +18,7 @@ Datum find_string_length(PG_FUNCTION_ARGS)
 	return strlen(string->vl_dat);
 }
 
+//3
 PG_FUNCTION_INFO_V1(return_select);
 
 Datum return_select(PG_FUNCTION_ARGS)
@@ -79,4 +81,60 @@ Datum return_select(PG_FUNCTION_ARGS)
 	{
 		SRF_RETURN_DONE(funcctx);
 	}
+}
+
+#define MY_SIZE_OF_STRING 150
+
+//6
+typedef struct merge_info
+{
+	int32 musicians_id;
+	uint8 merge_type;
+	uint32 cost;
+} merge_info_t;
+
+PG_FUNCTION_INFO_V1(merge_info_input);
+
+Datum merge_info_input(PG_FUNCTION_ARGS)
+{
+	char *string = PG_GETARG_CSTRING(0);
+	merge_info_t *result = NULL;
+	int musicians_id = 0;
+	char merge_type = 0;
+	unsigned int cost;
+	int count = 0;
+
+	if ((count = sscanf(string, "(%d, %hhd, %u)", &musicians_id, &merge_type, &cost)) != 3)
+		ereport(ERROR,
+				(errcode(ERRCODE_INVALID_TEXT_REPRESENTATION),
+				 errmsg("Fu fu fu, it not right! count = %d", count)));
+	result = (merge_info_t *)palloc(sizeof(merge_info_t));
+	result->musicians_id = musicians_id;
+	result->merge_type = merge_type;
+	result->cost = cost;
+	PG_RETURN_POINTER(result);
+}
+
+PG_FUNCTION_INFO_V1(merge_info_output);
+
+Datum merge_info_output(PG_FUNCTION_ARGS)
+{
+	merge_info_t *merge = (merge_info_t *) PG_GETARG_POINTER(0);
+	char *result = NULL;
+
+	switch (merge->merge_type)
+	{
+	case 0:
+		result = psprintf("(%d,T-Shirt,%u$)", merge->musicians_id, merge->cost);
+		break;
+	case 1:
+		result = psprintf("(%d,Cap,%u$)", merge->musicians_id, merge->cost);
+		break;
+	case 2:
+		result = psprintf("(%d,A Cup,%u$)", merge->musicians_id, merge->cost);
+		break;
+	default:
+		result = psprintf("(%d,Other,%u$)", merge->musicians_id, merge->cost);
+	}
+	PG_RETURN_CSTRING(result);
 }
