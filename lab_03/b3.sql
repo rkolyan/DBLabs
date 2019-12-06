@@ -1,4 +1,4 @@
---TODO:Хранимая процедура с курсором
+--Хранимая процедура с курсором
 
 CREATE OR REPLACE FUNCTION find_count_of_albums_of_musicians(musicians_name VARCHAR(150))
 RETURNS INT
