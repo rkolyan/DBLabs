@@ -1,4 +1,4 @@
---TODO:Триггер INSTEAD OF
+--Триггер INSTEAD OF
 
 DROP VIEW IF EXISTS all_albums_info;
 
