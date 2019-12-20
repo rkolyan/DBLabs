@@ -1,0 +1,8 @@
+<!ELEMENT all_musicians(musicians+)>
+<!ELEMENT musicians(musicians_id, name, people_count, birthyear, is_dead, country)>
+<!ELEMENT musicians_id(#PCDATA)>
+<!ELEMENT name(#PCDATA)>
+<!ELEMENT people_count(#PCDATA)>
+<!ELEMENT birthyear(#PCDATA)>
+<!ELEMENT is_dead(#PCDATA)>
+<!ELEMENT country(#PCDATA)>
