@@ -1,0 +1,20 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ROOT">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="musicians" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:short" name="musicians_id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:byte" name="people_count"/>
+              <xs:element type="xs:short" name="birthyear"/>
+              <xs:element type="xs:byte" name="is_dead"/>
+              <xs:element type="xs:string" name="country"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
