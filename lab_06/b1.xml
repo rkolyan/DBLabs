@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<all_musicians>
+  <musicians>
+    <musicians_id>2000</musicians_id>
+    <name>Blague</name>
+    <people_count>4</people_count>
+    <birthyear>1999</birthyear>
+    <is_dead>0</is_dead>
+    <country>Russia</country>
+  </musicians>
+  <musicians>
+    <musicians_id>2001</musicians_id>
+    <name>Brown babies</name>
+    <people_count>2</people_count>
+    <birthyear>2001</birthyear>
+    <is_dead>0</is_dead>
+    <country>Romania</country>
+  </musicians>
+  <musicians>
+    <musicians_id>2002</musicians_id>
+    <name>Rock And Beat</name>
+    <people_count>3</people_count>
+    <birthyear>2002</birthyear>
+    <is_dead>0</is_dead>
+    <country>Belgia</country>
+  </musicians>
+</all_musicians>
