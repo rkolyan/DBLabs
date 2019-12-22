@@ -38,3 +38,5 @@ AS $$
 	label_id = label_id[0]["label_id"];
 	plpy.execute("INSERT INTO lab_01.albums (album_id, name, record_year, tracks_count, album_type, musicians_id, label_id, genre_id) VALUES ("+ str(maximum + 1) + ",\'" + str(album_name) + "\',2019,3,\'EP\'," + str(musicians_id) + "," + str(label_id) + "," + str(genre_id) + ");");
 $$ LANGUAGE plpython3u;
+
+CALL add_album('Yeyeye Album', 'Rock And Beat', 'Chanson', 'Fargone Records');
