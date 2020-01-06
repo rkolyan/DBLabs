@@ -4,10 +4,10 @@ INTO tmp_tab
 FROM 
 (
 	SELECT label_id, name
-	FROM lab_01.labels
+	FROM labels
 	UNION ALL
 	SELECT label_id, name
-	FROM lab_01.labels
+	FROM labels
 ) T;
 
 SELECT *

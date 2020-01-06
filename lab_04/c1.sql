@@ -5,7 +5,7 @@ CREATE EXTENSION plpython3u;
 DROP VIEW IF EXISTS all_albums_info;
 
 CREATE VIEW all_albums_info AS
-SELECT * FROM lab_01.albums
+SELECT * FROM albums
 ORDER BY album_id;
 
 CREATE OR REPLACE FUNCTION insert_right_values()
@@ -14,7 +14,7 @@ new = TD["new"];
 if (not new["album_id"]):
 	raise Exception("Album id must be more than 0");
 
-cursor = plpy.cursor("SELECT album_id FROM lab_01.albums;");
+cursor = plpy.cursor("SELECT album_id FROM albums;");
 while True:
 	rows = cursor.fetch(1);
 	if not rows:
@@ -23,7 +23,7 @@ while True:
 		if row["album_id"] == new["album_id"]:
 			raise Exception("This album id have been already added");
 
-cursor = plpy.cursor("SELECT musicians_id FROM lab_01.musicians;");
+cursor = plpy.cursor("SELECT musicians_id FROM musicians;");
 flag = False;
 while True:
 	rows = cursor.fetch(10);
@@ -36,7 +36,7 @@ while True:
 if (not flag):
 	raise Exception("There isnt such musicians_id in musicians");
 
-cursor = plpy.cursor("SELECT genre_id FROM lab_01.genres;");
+cursor = plpy.cursor("SELECT genre_id FROM genres;");
 flag = False;
 while True:
 	rows = cursor.fetch(10);
@@ -49,7 +49,7 @@ while True:
 if not flag:
 	raise Exception("There isnt such genre_id in genres");
 
-cursor = plpy.cursor("SELECT label_id FROM lab_01.labels;");
+cursor = plpy.cursor("SELECT label_id FROM labels;");
 flag = False;
 while True:
 	rows = cursor.fetch(10);
@@ -62,7 +62,7 @@ while True:
 if not flag:
 	raise Exception("There isnt such label_id in labels");
 
-plpy.execute("INSERT INTO lab_01.albums VALUES (" + str(new["album_id"]) + ",\'" + str(new["name"]) + "\',\'" + str(new["album_type"]) + "\'," + str(new["tracks_count"]) + "," + str(new["record_year"]) + "," + str(new["musicians_id"]) + "," + str(new["genre_id"]) + "," + str(new["label_id"]) + ");");
+plpy.execute("INSERT INTO albums VALUES (" + str(new["album_id"]) + ",\'" + str(new["name"]) + "\',\'" + str(new["album_type"]) + "\'," + str(new["tracks_count"]) + "," + str(new["record_year"]) + "," + str(new["musicians_id"]) + "," + str(new["genre_id"]) + "," + str(new["label_id"]) + ");");
 $emp_stamp$ LANGUAGE plpython3u;
 
 CREATE TRIGGER insert_new_album

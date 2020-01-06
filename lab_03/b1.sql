@@ -10,16 +10,16 @@ CREATE OR REPLACE PROCEDURE add_new_album
 	genre_name VARCHAR(150)
 )
 AS $$
-	INSERT INTO lab_01.albums
+	INSERT INTO albums
 	VALUES
 	(
-		(SELECT MAX(album_id)+1 FROM lab_01.albums),
+		(SELECT MAX(album_id)+1 FROM albums),
 		$1,
 		$2,
 		$3,
 		$4,
-		(SELECT musicians_id FROM lab_01.musicians M WHERE M.name=$5),
-		(SELECT label_id FROM lab_01.labels L WHERE L.name=$6),
-		(SELECT genre_id FROM lab_01.genres G WHERE G.name=$7)
+		(SELECT musicians_id FROM musicians M WHERE M.name=$5),
+		(SELECT label_id FROM labels L WHERE L.name=$6),
+		(SELECT genre_id FROM genres G WHERE G.name=$7)
 	);
 $$ LANGUAGE SQL;

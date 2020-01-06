@@ -7,9 +7,9 @@ AS $$
 		album_count numeric;
 		_musicians_id numeric;
 		_tmp_id numeric;
-		curs1 CURSOR FOR SELECT * FROM lab_01.albums WHERE musicians_id = _musicians_id;
+		curs1 CURSOR FOR SELECT * FROM albums WHERE musicians_id = _musicians_id;
 BEGIN
-	_musicians_id := (SELECT M.musicians_id FROM lab_01.musicians AS M WHERE M.name = musicians_name);
+	_musicians_id := (SELECT M.musicians_id FROM musicians AS M WHERE M.name = musicians_name);
 	album_count := 0;
 	OPEN curs1;
 	LOOP

@@ -5,4 +5,4 @@ SELECT name,
 		WHEN 2020 THEN 'Next year'
 		ELSE 'Previous years'
 	END AS "When musicians born"
-FROM lab_01.musicians;
+FROM musicians;

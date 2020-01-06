@@ -32,8 +32,8 @@ CREATE OR REPLACE FUNCTION process_emp_audit() RETURNS TRIGGER AS $emp_audit$
     END;
 $emp_audit$ LANGUAGE plpgsql;
 
-DROP TRIGGER IF EXISTS emp_audit ON lab_01.albums;
+DROP TRIGGER IF EXISTS emp_audit ON albums;
 
 CREATE TRIGGER emp_audit
-AFTER INSERT OR UPDATE OR DELETE ON lab_01.albums
+AFTER INSERT OR UPDATE OR DELETE ON albums
     FOR EACH ROW EXECUTE PROCEDURE process_emp_audit();

@@ -7,5 +7,5 @@ FROM
            XMLAGG(XMLELEMENT(NAME genre, XMLATTRIBUTES(G.genre_id AS id, G.name as name), E'\n')) AS
             "xml-val"
         FROM
-            lab_01.genres AS G
+            genres AS G
     ) AS tb1;

@@ -21,62 +21,62 @@ AS $$
 		SELECT 
 			1 AS i,
 			(SELECT name 
-			FROM lab_01.albums
+			FROM albums
 			LIMIT 1), 
 			(SELECT album_type 
-			FROM lab_01.albums
+			FROM albums
 			LIMIT 1), 
 			(SELECT record_year
-			FROM lab_01.albums
+			FROM albums
 			LIMIT 1), 
 			(SELECT tracks_count
-			FROM lab_01.albums
+			FROM albums
 			LIMIT 1), 
 			(SELECT musicians_id
-			FROM lab_01.albums
+			FROM albums
 			LIMIT 1), 
 			(SELECT label_id
-			FROM lab_01.albums
+			FROM albums
 			LIMIT 1), 
 			(SELECT genre_id
-			FROM lab_01.albums
+			FROM albums
 			LIMIT 1) 
 		UNION ALL
 		SELECT 
 			my_index+1 AS my_index,
 			(SELECT name 
-			FROM lab_01.albums
+			FROM albums
 			LIMIT 1
 			OFFSET my_index), 
 			(SELECT album_type 
-			FROM lab_01.albums
+			FROM albums
 			LIMIT 1
 			OFFSET my_index), 
 			(SELECT record_year
-			FROM lab_01.albums
+			FROM albums
 			LIMIT 1
 			OFFSET my_index), 
 			(SELECT tracks_count
-			FROM lab_01.albums
+			FROM albums
 			LIMIT 1
 			OFFSET my_index), 
 			(SELECT musicians_id
-			FROM lab_01.albums
+			FROM albums
 			LIMIT 1
 			OFFSET my_index), 
 			(SELECT label_id
-			FROM lab_01.albums
+			FROM albums
 			LIMIT 1
 			OFFSET my_index), 
 			(SELECT genre_id
-			FROM lab_01.albums
+			FROM albums
 			LIMIT 1
 			OFFSET my_index) 
 		FROM my_cte
 		WHERE my_index <
 		(
 			SELECT COUNT(*)
-			FROM lab_01.albums
+			FROM albums
 		)
 	)
 	INSERT INTO tmp_tab

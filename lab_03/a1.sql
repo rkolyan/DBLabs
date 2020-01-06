@@ -6,7 +6,7 @@ AS $$
 	FROM
 	(
 		SELECT record_year, COUNT(*) AS album_count
-		FROM lab_01.albums
+		FROM albums
 		GROUP BY record_year
 		ORDER BY album_count DESC
 	) TMP
