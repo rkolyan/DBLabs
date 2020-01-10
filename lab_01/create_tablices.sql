@@ -58,5 +58,6 @@ ALTER TABLE Albums ADD CONSTRAINT UI_A UNIQUE(album_id);
 ALTER TABLE Albums ADD CONSTRAINT CH_A_NAME CHECK(name <> '');
 ALTER TABLE Albums ADD CONSTRAINT CH_MINUS_TRACKS CHECK(tracks_count > 0);
 ALTER TABLE Albums ADD CONSTRAINT CH_YEAR CHECK(record_year < 2021 and record_year > -1);
+ALTER TABLE Albums ADD CONSTRAINT CH_LIKE_OLOLO CHECK(name not like 'OLOLO');
 
 \copy Albums FROM '/home/nikolay/DesktopW/DBLabs/lab_01/csv/albums.csv' WITH (FORMAT csv);
