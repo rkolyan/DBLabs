@@ -10,8 +10,8 @@ BEGIN
 END;
 $emp_audit$ LANGUAGE plpgsql;
 
-DROP TRIGGER IF EXISTS emp_audit ON lab_01.albums;
+DROP TRIGGER IF EXISTS emp_audit ON albums;
 
 CREATE TRIGGER emp_audit
-AFTER UPDATE ON lab_01.albums
+AFTER UPDATE ON albums
     FOR EACH ROW EXECUTE PROCEDURE print_old_and_new_row();

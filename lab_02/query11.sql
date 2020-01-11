@@ -4,6 +4,6 @@ DROP TABLE IF EXISTS tmp_musicians;
 
 SELECT name, people_count
 INTO tmp_musicians
-FROM lab_01.musicians
+FROM musicians
 WHERE people_count < 3
 ORDER BY name;

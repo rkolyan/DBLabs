@@ -10,7 +10,7 @@ BEGIN
 		RAISE EXCEPTION 'There isnt file with this name or path';
 		RETURN FALSE;
 	END IF;
-	INSERT INTO lab_01.musicians
+	INSERT INTO musicians
 	SELECT unnest((xpath('//musicians/musicians_id/text()', data)::varchar[])::integer[]),
 		unnest(xpath('//musicians/name/text()', data)::varchar[]),
 		unnest((xpath('//musicians/people_count/text()', data)::varchar[])::integer[]),
@@ -22,5 +22,5 @@ BEGIN
 END
 $$ LANGUAGE PLPGSQL;
 
-DELETE FROM lab_01.musicians AS M
+DELETE FROM musicians AS M
 WHERE M.musicians_id > 1999;

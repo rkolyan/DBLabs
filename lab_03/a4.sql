@@ -8,20 +8,20 @@ AS $$
 		SELECT 
 			1 AS i,
 			(SELECT name
-			FROM lab_01.albums
+			FROM albums
 			LIMIT 1)
 		UNION ALL
 		SELECT 
 			i+1 AS i,
 			(SELECT name
-			FROM lab_01.albums
+			FROM albums
 			LIMIT 1
 			OFFSET i)
 		FROM my_cte
 		WHERE i <
 		(
 			SELECT COUNT(*)
-			FROM lab_01.albums
+			FROM albums
 		)
 	)
 	SELECT *

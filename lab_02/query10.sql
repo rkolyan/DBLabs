@@ -9,7 +9,7 @@ SELECT M1.name,
 FROM 
 (
 	SELECT M2.name, COUNT(*) AS albums_count
-	FROM lab_01.albums A
-	JOIN lab_01.musicians AS M2 ON M2.musicians_id=A.musicians_id
+	FROM albums A
+	JOIN musicians AS M2 ON M2.musicians_id=A.musicians_id
 	GROUP BY M2.name
 ) AS M1;
