@@ -43,7 +43,6 @@ if __name__ == "__main__":
     labels = fill_tablice(f, labels);
     f.close();
 
-    #TODO: Add lambda-functions
     #1)Get Dead Music Groups
     print("QUERY01:");
     query01 = list(filter(lambda row: int(row[2]) > 1 and int(row[4]), musicians));
@@ -69,3 +68,13 @@ if __name__ == "__main__":
     print("\n\n\n");
 
     #4)Add something
+    print("QUERY04:");
+    query04 = list(zip(sorted(musicians[1]), sorted(musicians[1], reverse=True)));
+    print_tablice(query04);
+
+    print("\n\n\n");
+
+    #5)Add something
+    print("QUERY05:");
+    query05 = list(zip(map(lambda x, y: str(int(x) + int(y)),[album[4] for album in albums], list(sorted([album[4] for album in albums], reverse=True))), [album[4] for album in albums]));
+    print_tablice(query05);
