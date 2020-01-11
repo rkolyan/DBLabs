@@ -32,12 +32,10 @@ FROM
 						lead(hdate) over (partition by pid, hid order by hdate) as next,
 						lag(hdate) over (partition by pid, hid order by hdate) as previous
 						FROM holidays
-						GROUP BY pid, hid, hdate
 					) AS T1
 					GROUP BY pid, hid, hdate, next, previous
 					HAVING next - hdate > 1 OR next IS NULL OR previous IS NULL
 				) AS T2
-				GROUP BY pid, hid, hdate, next, previous
 		) AS T3
 	) AS T4
 	WHERE begin_data IS NOT NULL
@@ -45,3 +43,19 @@ FROM
 JOIN holiday_types AS HT ON T5.hid=HT.id
 JOIN persons AS P ON T5.pid=P.id
 ORDER BY begin_data;
+
+				SELECT *, --Добавляем новую следующую дату, (next2)
+				lead(hdate) over(partition by pid, hid order by hdate) as next2
+				FROM
+				(
+					SELECT * --Оставляем только где есть null и разность дней > 1
+					FROM
+					(
+						SELECT pid, hid, hdate, --Находим для каждого числа следующее и предыдущее
+						lead(hdate) over (partition by pid, hid order by hdate) as next,
+						lag(hdate) over (partition by pid, hid order by hdate) as previous
+						FROM holidays
+					) AS T1
+					GROUP BY pid, hid, hdate, next, previous
+					HAVING next - hdate > 1 OR next IS NULL OR previous IS NULL
+				) AS T2;
