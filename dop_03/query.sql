@@ -3,8 +3,8 @@ TABLE holiday_types;
 TABLE holidays;
 
 --Сам запрос(нужны данные)
-SELECT row_number() over (order by T5.begin_data),
-P.fio, T5.begin_data, T5.end_data, HT.htype
+SELECT row_number() over (order by T5.begin_data) as id,
+P.fio, T5.begin_data, T5.end_data, HT.htype as holiday_type
 FROM
 (
 	SELECT * 
